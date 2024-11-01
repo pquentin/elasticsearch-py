@@ -61,6 +61,8 @@ from .exceptions import (
     TransportError,
     UnsupportedProductError,
 )
+from .kibana._async.client import AsyncKibana as AsyncKibana
+from .kibana._sync.client import Kibana as Kibana
 from .serializer import JSONSerializer, JsonSerializer
 
 try:
@@ -75,9 +77,11 @@ warnings.simplefilter("default", category=ElasticsearchWarning, append=True)
 __all__ = [
     "ApiError",
     "AsyncElasticsearch",
+    "AsyncKibana",
     "BadRequestError",
     "Elasticsearch",
     "JsonSerializer",
+    "Kibana",
     "SerializationError",
     "TransportError",
     "NotFoundError",

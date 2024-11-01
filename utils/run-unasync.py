@@ -88,6 +88,17 @@ def main(check: bool = False):
                 # Handling typing.Awaitable[...] isn't done yet by unasync.
                 "_TYPE_ASYNC_SNIFF_CALLBACK": "_TYPE_SYNC_SNIFF_CALLBACK",
             },
+        )
+    )
+    run(
+        rule=unasync.Rule(
+            fromdir="/elasticsearch/kibana/_async/client/",
+            todir="/elasticsearch/kibana/_sync/client/",
+            additional_replacements={
+                # We want to rewrite to 'Transport' instead of 'SyncTransport', etc
+                "AsyncTransport": "Transport",
+                "AsyncKibana": "Kibana",
+            },
         ),
         check=check,
     )
